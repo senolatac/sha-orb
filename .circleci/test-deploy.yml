@@ -1,6 +1,6 @@
 version: 2.1
 orbs:
-  <orb-name>: sha-python/sha-python-deploy@dev:<<pipeline.git.revision>>
+  sha-python-deploy: sha-python/sha-python-deploy@dev:<<pipeline.git.revision>>
   orb-tools: circleci/orb-tools@11.1
 
 filters: &filters

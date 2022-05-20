@@ -1,4 +1,3 @@
-#!/bin/bash
 export CODACY_REPORTER_VERSION=$CODACY_REPORTER_VERSION
 export CODACY_PROJECT_TOKEN=$CODACY_PROJECT_TOKEN
 report_array=$(printf "%s" "$CODACY_COVERAGE_REPORTS" | cut -d',' -f1)
