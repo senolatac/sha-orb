@@ -6,7 +6,7 @@ report_array=$(printf "%s" "$CODACY_COVERAGE_REPORTS" | cut -d',' -f1)
 params=''
 for report in $report_array
 do
-    if [ -n -z "$report" ]
+    if [ ! -z "$report" ]
     then
         params="$params -r $report"
     fi
