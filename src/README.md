@@ -10,6 +10,12 @@ This is the entry point for our orb "tree", which becomes our `orb.yml` file lat
 
 Within the `@orb.yml` we generally specify 4 configuration keys
 
+```
+circleci orb publish .circleci/config1.yml sha-python/sha-python-deploy@dev:first
+https://circleci.com/developer/orbs/orb/sha-python/sha-python-deploy?version=dev:first
+circleci orb publish promote sha-python/sha-python-deploy@dev:first patch
+```
+
 **Keys**
 
 1. **version**
