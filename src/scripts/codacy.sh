@@ -1,12 +1,12 @@
 #!/bin/bash
 export CODACY_REPORTER_VERSION=$CODACY_REPORTER_VERSION
 export CODACY_PROJECT_TOKEN=$CODACY_PROJECT_TOKEN
-report_array=$(printf "$CODACY_COVERAGE_REPORTS" | cut -d',' -f1)
+report_array=$(printf "%s" "$CODACY_COVERAGE_REPORTS" | cut -d',' -f1)
 
 params=''
 for report in $report_array
 do
-    if [ ! -z "$report" ]
+    if [ -n -z "$report" ]
     then
         params="$params -r $report"
     fi
@@ -19,9 +19,9 @@ else
 fi
 
 
-if [ -x "$(which curl)" ]; then
+if [ -x "$(command -v curl)" ]; then
     curl -Ls https://coverage.codacy.com/get.sh > get.sh
-elif [ -x "$(which wget)" ] ; then
+elif [ -x "$(command -v wget)" ] ; then
     wget -qO - https://coverage.codacy.com/get.sh > get.sh
 else
     printf "Could not find curl or wget, please install one."
