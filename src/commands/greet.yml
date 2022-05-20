@@ -12,5 +12,4 @@ steps:
       environment:
         PARAM_TO: <<parameters.to>>
       name: Hello Greeting
-      command: |
-        echo Hello "${PARAM_TO}"
+      command: <<include(scripts/greet.sh)>>
