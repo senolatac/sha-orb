@@ -20,35 +20,10 @@ parameters:
     type: string
 steps:
   - run:
-      command: |
-        export CODACY_REPORTER_VERSION=<< parameters.tool_version >>
-        export CODACY_PROJECT_TOKEN=<< parameters.project-token >>
-        report_array=$(printf "<< parameters.coverage-reports >>" | cut -d',' -f1)
-
-        params=''
-        for report in $report_array
-        do
-            if [ ! -z "$report" ]
-            then
-                params="$params -r $report"
-            fi
-        done
-
-        if << parameters.skip >>; then
-            skip_option="--skip"
-        else
-            skip_option=""
-        fi
-
-
-        if [ -x "$(which curl)" ]; then
-            curl -Ls https://coverage.codacy.com/get.sh > get.sh
-        elif [ -x "$(which wget)" ] ; then
-            wget -qO - https://coverage.codacy.com/get.sh > get.sh
-        else
-            printf "Could not find curl or wget, please install one."
-        fi
-
-        source get.sh report $params --partial $skip_option &&\
-        source get.sh final $skip_option
+      environment:
+        CODACY_REPORTER_VERSION: << parameters.tool_version >>
+        CODACY_PROJECT_TOKEN: << parameters.project-token >>
+        CODACY_COVERAGE_REPORTS: << parameters.coverage-reports >>
+        CODACY_SKIP: << parameters.skip >>
+      command: <<include(scripts/codacy.sh)>>
       name: Upload Coverage Results to Codacy
