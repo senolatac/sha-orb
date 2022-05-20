@@ -27,5 +27,5 @@ else
     printf "Could not find curl or wget, please install one."
 fi
 
-source "$(pwd)"/get.sh report $params --partial $skip_option &&\
-source "$(pwd)"/get.sh final $skip_option
+source '$PWD/get.sh' report $params --partial $skip_option &&\
+source '$PWD/get.sh' final $skip_option
