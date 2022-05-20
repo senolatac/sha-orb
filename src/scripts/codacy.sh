@@ -28,5 +28,5 @@ fi
 
 chmod +x get.sh
 
-get.sh report $params --partial $skip_option &&\
-get.sh final $skip_option
+source get.sh report $params --partial $skip_option &&\
+source get.sh final $skip_option
