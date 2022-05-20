@@ -6,7 +6,7 @@ report_array=$(printf "%s" "$CODACY_COVERAGE_REPORTS" | cut -d',' -f1)
 params=''
 for report in $report_array
 do
-    if [ ! -z "$report" ]
+    if [ -n "$report" ]
     then
         params="$params -r $report"
     fi
@@ -27,5 +27,5 @@ else
     printf "Could not find curl or wget, please install one."
 fi
 
-source get.sh report $params --partial $skip_option &&\
-source get.sh final $skip_option
+source "$(pwd)"/get.sh report $params --partial $skip_option &&\
+source "$(pwd)"/get.sh final $skip_option
