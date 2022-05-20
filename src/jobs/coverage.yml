@@ -1,0 +1,23 @@
+description: >
+  Codacy coverage job
+# What will this job do?
+
+docker:
+  - image: 'circleci/openjdk:8-jdk'
+working_directory: ~/workdir/codacy
+parameters:
+  codacy_project_token:
+    type: string
+    description: Codacy Project token taken from codacy
+steps:
+  - checkout
+  - attach_workspace:
+      at: ~/workdir
+  - run:
+      name: Check files in workspace
+      command: |
+        pwd
+        ls
+  - send_report:
+      coverage-reports: 'coverage.xml'
+      project-token: << parameters.codacy_project_token>>
